@@ -1,0 +1,30 @@
+# Configuration de base pour Nginx
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections {{ ludus_nginx_worker_connections }};
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    # Configuration du serveur
+    server {
+        listen {{ ludus_nginx_listen_port }};
+        server_name {{ ludus_nginx_server_name }};
+
+        location / {
+            root {{ ludus_nginx_web_root }};
+            index index.html index.htm;
+        }
+
+        # Gestion des erreurs
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+            root {{ ludus_nginx_web_root }};
+        }
+    }
+}

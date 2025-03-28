@@ -1,5 +1,5 @@
 ---
-# Variables pour installer le serveur Nginx avec le role ludus
+# Variables de configuration pour installer le serveur Nginx 
 ludus_nginx_worker_connections: 1024
 ludus_nginx_listen_port: 80
 ludus_nginx_server_name: "snmplab.lan"
